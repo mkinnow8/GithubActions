@@ -1,4 +1,4 @@
-name: "Build Android app"
+name: 'Build Android app'
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Setup Node  
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -30,16 +30,16 @@ jobs:
 
       - name: Run Yarn Install
         run: |
-             npm i -g corepack
-             yarn install
+          npm i -g corepack
+          yarn install
 
       - name: Build application
         run: |
-             cd android
-             ./gradlew assembleRelease
+          cd android
+          ./gradlew assembleRelease
 
       - name: Upload application
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: app
           path: android/app/build/outputs/apk/release/app-release.apk
